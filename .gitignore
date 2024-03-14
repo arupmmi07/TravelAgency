@@ -2,3 +2,4 @@ __pycache__/
 .env
 experiments/
 poetry.lock
+.DS_Store
