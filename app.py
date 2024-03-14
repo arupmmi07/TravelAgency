@@ -1,8 +1,4 @@
-from crewai import Crew, Process
 from textwrap import dedent
-from agents.agents import TravelAgents
-from tasks import TravelTasks
-
 from TravelAgency import TravelAgency
 
 from dotenv import load_dotenv

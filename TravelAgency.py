@@ -1,4 +1,7 @@
-from agents.agents import TravelAgents
+from agents.ExpertTravelAgent import ExpertTravelAgent
+from agents.CityExpertAgent import CityExpertAgent
+from agents.LocalGuideAgent import LocalGuideAgent
+
 from tasks import TravelTasks
 from crewai import Crew, Process
 
@@ -13,14 +16,13 @@ class TravelAgency:
         self.noofdays = noofdays
 
     def run(self):
-        # Define your custom agents and tasks in agents.py and tasks.py
-        agents = TravelAgents()
+        # Define your custom agents and tasks under agents and tasks modules
         tasks = TravelTasks()
 
         # Define your custom agents and tasks here
-        expert_travel_agent = agents.expert_travel_agent(self.noofdays)
-        city_selection_expert = agents.city_selection_expert()
-        local_tour_guide = agents.local_tour_guide()
+        expert_travel_agent = ExpertTravelAgent.expert_travel_agent(self.noofdays)
+        city_selection_expert = CityExpertAgent.city_expert_agent()
+        local_tour_guide = LocalGuideAgent.local_tour_guide_agent()
 
         # Custom tasks include agent name and variables as input
         plan_itinerary = tasks.plan_itinerary(
@@ -48,7 +50,7 @@ class TravelAgency:
 
         # Define your custom crew here
         crew = Crew(
-            agents=[expert_travel_agent,
+            agents=[
                     city_selection_expert,
                     local_tour_guide
                     ],
@@ -57,7 +59,7 @@ class TravelAgency:
                 identify_city,
                 gather_city_info
             ],
-            process=Process.HIGH_ACCURACY,
+            # process=Process.LINEAR,
             verbose=True,
         )
 

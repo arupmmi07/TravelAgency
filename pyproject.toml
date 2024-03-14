@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "trip-planner-agent"
+name = "Travel Agency"
 version = "0.1.0"
-description = "AI Trip Planner"
+description = "AI Travel Planner"
 authors = ["Arup Sarkar, Rahul Kumar <arup.sarkar@globallogic.com>, <rahul.kumar31@globallogic.com>"]
 
 [tool.poetry.dependencies]
