@@ -1,6 +1,7 @@
 from agents.ExpertTravelAgent import ExpertTravelAgent
 from agents.CityExpertAgent import CityExpertAgent
 from agents.LocalGuideAgent import LocalGuideAgent
+from llm.models import llm_models
 
 from tasks import TravelTasks
 from crewai import Crew, Process
@@ -21,8 +22,8 @@ class TravelAgency:
 
         # Define your custom agents and tasks here
         expert_travel_agent = ExpertTravelAgent.expert_travel_agent(self.noofdays)
-        city_selection_expert = CityExpertAgent.city_expert_agent()
-        local_tour_guide = LocalGuideAgent.local_tour_guide_agent()
+        city_selection_agent = CityExpertAgent.city_expert_agent()
+        local_tour_guide_agent = LocalGuideAgent.local_tour_guide_agent()
 
         # Custom tasks include agent name and variables as input
         plan_itinerary = tasks.plan_itinerary(
@@ -34,7 +35,7 @@ class TravelAgency:
         )
 
         identify_city = tasks.identify_city(
-            city_selection_expert,
+            city_selection_agent,
             self.origin,
             self.cities,
             self.interests,
@@ -42,7 +43,7 @@ class TravelAgency:
         )
 
         gather_city_info = tasks.gather_city_info(
-            local_tour_guide,
+            local_tour_guide_agent,
             self.cities,
             self.date_range,
             self.interests
@@ -51,16 +52,18 @@ class TravelAgency:
         # Define your custom crew here
         crew = Crew(
             agents=[
-                    city_selection_expert,
-                    local_tour_guide
+                    expert_travel_agent,
+                    city_selection_agent,
+                    local_tour_guide_agent
                     ],
             tasks=[
                 plan_itinerary,
                 identify_city,
                 gather_city_info
             ],
-            # process=Process.LINEAR,
-            verbose=True,
+            process=Process.hierarchical,
+            verbose=2,
+            manager_llm=llm_models('gpt-4')
         )
 
         result = crew.kickoff()

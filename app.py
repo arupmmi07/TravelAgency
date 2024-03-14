@@ -7,7 +7,7 @@ load_dotenv()
 
 # This is the main function that you will use to run your custom crew.
 if __name__ == "__main__":
-    print("## Welcome to Trip Planner Crew")
+    print("## Welcome to Our Travel Planner Agency ##")
     print('-------------------------------')
     origin = input(
         dedent("""
@@ -33,6 +33,6 @@ if __name__ == "__main__":
     travel_agency = TravelAgency(origin, cities, date_range, interests)
     result = travel_agency.run()
     print("\n\n########################")
-    print("## Here is you Trip Plan")
+    print("## Here is you Travel Plan")
     print("########################\n")
     print(result)

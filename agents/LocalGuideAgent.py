@@ -1,6 +1,5 @@
 from crewai import Agent
 from textwrap import dedent
-from lms.openai import openai_model
 
 from tools.search_tools import SearchTools
 
@@ -18,5 +17,7 @@ class LocalGuideAgent:
                 f"""Provide the BEST insights about the selected city"""),
             tools=[SearchTools.search_internet],
             verbose=True,
-            llm=openai_model('gpt-4'),
+            allow_delegation=True,
+            max_iter=15
+            # llm=openai_model('gpt-4'),
         )

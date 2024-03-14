@@ -1,6 +1,5 @@
 from crewai import Agent
 from textwrap import dedent
-from lms.openai import openai_model
 
 from tools.search_tools import SearchTools
 from tools.calculator_tools import CalculatorTools
@@ -25,5 +24,7 @@ class ExpertTravelAgent:
                 CalculatorTools.calculate
             ],
             verbose=True,
-            llm=openai_model('gpt-4'),
+            allow_delegation=True,
+            max_iter=15
+            # llm=openai_model('gpt-4'),
         )
