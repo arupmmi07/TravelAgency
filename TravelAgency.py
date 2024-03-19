@@ -63,7 +63,7 @@ class TravelAgency:
             ],
             process=Process.hierarchical,
             verbose=2,
-            manager_llm=LLMManager('gpt-4').connect()
+            manager_llm=LLMManager('autoagent-llama2').connect()
         )
 
         result = crew.kickoff()

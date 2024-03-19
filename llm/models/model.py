@@ -1,14 +1,27 @@
-from abc import ABC, abstractmethod
+from pydantic import (
+    BaseModel,
+    Field
+)
+from typing import Optional, Any
 
-class Model(ABC):
-    @abstractmethod
-    def name(self):
-        pass
+class Model(BaseModel):
+    
+    name: str = Field(
+        description="Name of the model"
+    )
 
-    @abstractmethod
-    def base_url(self):
-        pass
+    base_url: Optional[str] = Field(
+        description="Base hosted url of the model",
+        default=None
+    )
 
-    @abstractmethod
-    def temperature(self):
-        pass
+    temperature: Optional[float] = Field(
+        description="Default temperature of the model",
+        default=None,
+        ge=0.0,
+        le=1.0
+    )
+
+    def __init__(__pydantic_self__, **data):
+        config = data.pop("config", {})
+        super().__init__(**config, **data)
