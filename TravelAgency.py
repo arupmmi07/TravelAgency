@@ -1,7 +1,7 @@
 from agents.ExpertTravelAgent import ExpertTravelAgent
 from agents.CityExpertAgent import CityExpertAgent
 from agents.LocalGuideAgent import LocalGuideAgent
-from llm.models import llm_models
+from llm.llm_manager import LLMManager
 
 from tasks import TravelTasks
 from crewai import Crew, Process
@@ -63,7 +63,7 @@ class TravelAgency:
             ],
             process=Process.hierarchical,
             verbose=2,
-            manager_llm=llm_models('gpt-4')
+            manager_llm=LLMManager('gpt-4').connect()
         )
 
         result = crew.kickoff()
