@@ -1,6 +1,5 @@
 from crewai import Agent
 from textwrap import dedent
-from lms.openai import openai_model
 
 from tools.search_tools import SearchTools
 
@@ -18,5 +17,7 @@ class CityExpertAgent:
                 f"""Select the best cities based on weather, season, prices, and traveler interests"""),
             tools=[SearchTools.search_internet],
             verbose=True,
-            llm=openai_model('gpt-4'),
+            allow_delegation=True,
+            max_iter=15
+            # llm=openai_model('gpt-4'),
         )
