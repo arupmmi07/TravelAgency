@@ -19,5 +19,4 @@ class LocalGuideAgent:
             verbose=True,
             allow_delegation=True,
             max_iter=15
-            # llm=openai_model('gpt-4'),
         )
