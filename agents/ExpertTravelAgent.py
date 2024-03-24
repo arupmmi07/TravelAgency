@@ -1,8 +1,8 @@
 from crewai import Agent
 from textwrap import dedent
 
-from tools.search_tools import SearchTools
-from tools.calculator_tools import CalculatorTools
+from tools.web.search_internet_tools import SearchInternetTools
+from tools.others.calculator_tools import CalculatorTools
 
 
 class ExpertTravelAgent:
@@ -20,7 +20,7 @@ class ExpertTravelAgent:
                         include budget, packing suggestions, and safety tips.
                         """),
             tools=[
-                SearchTools.search_internet,
+                SearchInternetTools.search_internet,
                 CalculatorTools.calculate
             ],
             verbose=True,

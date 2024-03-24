@@ -1,7 +1,7 @@
 from crewai import Agent
 from textwrap import dedent
 
-from tools.search_tools import SearchTools
+from tools.web.search_internet_tools import SearchInternetTools
 
 
 class LocalGuideAgent:
@@ -15,7 +15,7 @@ class LocalGuideAgent:
         about the city, it's attractions and customs"""),
             goal=dedent(
                 f"""Provide the BEST insights about the selected city"""),
-            tools=[SearchTools.search_internet],
+            tools=[SearchInternetTools.search_internet],
             verbose=True,
             allow_delegation=True,
             max_iter=15

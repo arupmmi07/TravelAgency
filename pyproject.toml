@@ -17,6 +17,7 @@ pyowm = '3.3.0'
 langchain-openai = "^0.0.5"
 boto3 = "^1.34.64"
 pydantic = "^2.6.4"
+langchain-community = "^0.0.29"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md

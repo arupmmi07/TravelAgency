@@ -64,7 +64,7 @@ class TravelAgency:
             process=Process.hierarchical,
             verbose=2,
             manager_llm=LLMManager(
-                llm_name="autoagent-llama2"
+                llm_name="llama2"
             ).connect()
         )
 

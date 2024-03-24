@@ -2,6 +2,9 @@ import os
 from llm.models.constants import *
 from llm.models.model import Model
 
+from dotenv import load_dotenv
+load_dotenv()
+
 class LLMModels:
     def __init__(self):
         self.models = {
